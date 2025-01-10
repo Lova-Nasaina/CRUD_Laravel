@@ -44,6 +44,8 @@
                     <th scope="col">Quantity</th>
                     <th scope="col">Price</th>
                     <th scope="col">Description</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -56,8 +58,13 @@
                     <td>{{ $item->quantity }}</td>
                     <td>{{ $item->price }}</td>
                     <td>{{ $item->description }}</td>
+
+                    <td><a href="/edit/{{ $item->id }}" class="btn btn-primary mb-1">Edit</a></td>
+                    <td><a href="/edit/{{ $item->id }}" class="btn btn-danger mb-1">Delete</a></td>
                 </tr>
                 @endforeach
+
+
             </tbody>
         </table>
 

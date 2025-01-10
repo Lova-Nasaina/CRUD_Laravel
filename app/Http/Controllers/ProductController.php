@@ -33,4 +33,25 @@ class ProductController extends Controller
         return redirect('/product')->with('success', 'le produit'.$request->name.' a été ajouté avec succès');
 
     }
+
+    public function edit($id){
+         $produit = Product::find($id);
+
+        return view('product.edit')->with('produit', $produit);
+    }
+
+    public function saveEdit(Request $request, $id){
+
+        $produit = Product::find($id);
+
+        $produit->name = $request->name;
+        $produit->quantity = $request->quantity;
+        $produit->price = $request->price;
+        $produit->description = $request->description;
+
+        $produit->save();
+
+        return redirect('/product')->with('success', 'Les Modifications sur '.$request->name.' a été achevé avec succès');
+    }
+
 }
