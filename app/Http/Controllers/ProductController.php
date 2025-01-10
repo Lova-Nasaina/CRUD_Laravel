@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function index(){
-        return view('product.index');
+
+        $produits = Product::orderBy("id","desc")->paginate(10);
+
+        return view('product.index')->with('produits', $produits);
     }
 
     public function create(){
@@ -16,16 +20,17 @@ class ProductController extends Controller
     }
 
     public function store(Request $request){
-        $data = $request->validate([
-            'name' => 'required',
-            'quantity' => 'required|numeric',
-            'price' => 'required|decimal:2',
-            'description' => 'nullable'
-        ]);
+
+        $data = array();
+
+        $data['name'] = $request->name;
+        $data['quantity'] = $request->quantity;
+        $data['price'] = $request->price;
+        $data['description'] = $request->description;
 
         $newProduct = Product::create($data);
 
-        return redirect(route('product.index'));
+        return redirect('/product')->with('success', 'le produit'.$request->name.' a été ajouté avec succès');
 
     }
 }
