@@ -54,4 +54,10 @@ class ProductController extends Controller
         return redirect('/product')->with('success', 'Les Modifications sur '.$request->name.' a été achevé avec succès');
     }
 
+    public function delete($id){
+        $element = Product::find($id);
+        $element->delete();
+
+        return redirect('/product')->with('success','Element supprimer avec succès');
+    }
 }

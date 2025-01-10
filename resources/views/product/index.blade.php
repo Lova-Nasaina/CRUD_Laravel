@@ -60,7 +60,12 @@
                     <td>{{ $item->description }}</td>
 
                     <td><a href="/edit/{{ $item->id }}" class="btn btn-primary mb-1">Edit</a></td>
-                    <td><a href="/edit/{{ $item->id }}" class="btn btn-danger mb-1">Delete</a></td>
+
+                    <form action="/delete/{{ $item->id }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <td><button class="btn btn-danger mb-1">Delete</button></td>
+                    </form>
                 </tr>
                 @endforeach
 

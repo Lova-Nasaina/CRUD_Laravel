@@ -24,3 +24,5 @@ Route::post('/postProduct', [ProductController::class,'store'])->name('product.s
 
 Route::get('/edit/{id}', [ProductController::class,'edit'])->name('product.edit');
 Route::put('/saveEdit/{id}', [ProductController::class,'saveEdit']);
+
+Route::delete('/delete/{id}', [ProductController::class,'delete']);
